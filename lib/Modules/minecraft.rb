@@ -7,7 +7,9 @@ module PlayerDB
                 @Data = contact_api("minecraft", id.downcase)
 
                 # Does this player exist?
-                if !@Data["success"] then abort("# [PlayerDB:Minecraft] Mojang API lookup failed; no such player exists.") end
+                if !@Data["success"]
+                    abort("# [PlayerDB:Minecraft] Mojang API lookup failed; no such player exists.")
+                end
 
                 # Perform some magic to correct the Unix timestamp
                 @History = @Data["data"]["player"]["meta"]["name_history"]
@@ -25,7 +27,9 @@ module PlayerDB
 
                 # Return the player data
                 @Data["data"]["player"]
-            else abort("# [PlayerDB:Minecraft] Please input an ID to continue.") end
+            else
+                abort("# [PlayerDB:Minecraft] Please input an ID to continue.")
+            end
         end
     end
 end
