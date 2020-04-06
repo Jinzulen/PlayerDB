@@ -18,24 +18,29 @@ require "playerdb"
 
 - Grab a Minecraft profile
 ```ruby
-@Minecraft = @Player.Minecraft("jinzulen")
+# Always catch exceptions!
+begin
+    @Minecraft = @Player.Minecraft("jinzulen")
 
-# General profile information
-puts "# General profile information:"
-puts "# ID: #{@Minecraft["id"]}"
-puts "# Raw ID: #{@Minecraft["raw_id"]}"
-puts "# Username: #{@Minecraft["username"]}"
-puts "# Avatar: #{@Minecraft["avatar"]}\n\n"
+    # General profile information
+    puts "# General profile information:"
+    puts "# ID: #{@Minecraft["id"]}"
+    puts "# Raw ID: #{@Minecraft["raw_id"]}"
+    puts "# Username: #{@Minecraft["username"]}"
+    puts "# Avatar: #{@Minecraft["avatar"]}\n\n"
 
-# Name change history
-@History = @Minecraft["meta"]["name_history"]
+    # Name change history
+    @History = @Minecraft["meta"]["name_history"]
 
-if @History.length > 1
-    puts "# Name change history:"
+    if @History.length > 1
+        puts "# Name change history:"
 
-    @History.each do |n|
-        puts "# #{n["name"]} <= Changed at: #{n["changedToAt"]}"
+        @History.each do |n|
+            puts "# #{n["name"]} <= Changed at: #{n["changedToAt"]}"
+        end
     end
+rescue StandardError => e
+    puts "#{e}"
 end
 
 # General profile information:
@@ -56,22 +61,27 @@ end
 
 > personatestate: The user's current online status.
 ```ruby
-@Steam = @Player.Steam("jinzulen")
+# Always catch exceptions!
+begin
+    @Steam = @Player.Steam("jinzulen")
 
-# Profile
-puts "# Profile:"
-puts "# ID: #{@Steam["id"]}"
-puts "# Username: #{@Steam["username"]}"
-puts "# Avatar: #{@Steam["avatar"]}\n\n"
+    # Profile
+    puts "# Profile:"
+    puts "# ID: #{@Steam["id"]}"
+    puts "# Username: #{@Steam["username"]}"
+    puts "# Avatar: #{@Steam["avatar"]}\n\n"
+
+    # Misc
+    puts "# Miscellaneous:"
+    @Steam["meta"].each { |m| puts "# #{m[0]}: #{m[1]}"}
+rescue StandardError => e
+    puts "#{e}"
+end
 
 # Profile:
 # ID: 76561198262601540
 # Username: Jin
 # Avatar: https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/ff/ffec106a4a3b7dccce217e9c6553b73ce785b90f_full.jpg
-
-# Misc
-puts "# Miscellaneous:"
-@Steam["meta"].each { |m| puts "# #{m[0]}: #{m[1]}"}
 
 # Miscellaneous:
 # steam2id: STEAM_0:0:151167906
@@ -91,22 +101,27 @@ puts "# Miscellaneous:"
 
 - Grab an Xbox profile
 ```ruby
-@Xbox = @Player.Xbox("Stallion83")
+# Always catch exceptions!
+begin
+    @Xbox = @Player.Xbox("Stallion83")
 
-puts "# Profile:"
-puts "# ID: #{@Xbox["id"]}"
-puts "# Username: #{@Xbox["username"]}"
-puts "# Avatar: #{@Xbox["avatar"]}"
-puts "# Gamer score: #{@Xbox["meta"]["gamerscore"]}"
-puts "# Account tier: #{@Xbox["meta"]["accountTier"]}"
-puts "# Xbox One Rep: #{@Xbox["meta"]["xboxOneRep"]}"
-puts "# Preferred color: #{@Xbox["meta"]["preferredColor"]}"
-puts "# Real name: #{@Xbox["meta"]["realName"]}"
-puts "# Bio: #{@Xbox["meta"]["bio"]}"
-puts "# Tenure level: #{@Xbox["meta"]["tenureLevel"]}"
-puts "# Watermarks: #{@Xbox["meta"]["watermarks"]}"
-puts "# Location: #{@Xbox["meta"]["location"]}"
-puts "# Show user as avatar: #{@Xbox["meta"]["showUserAsAvatar"]}"
+    puts "# Profile:"
+    puts "# ID: #{@Xbox["id"]}"
+    puts "# Username: #{@Xbox["username"]}"
+    puts "# Avatar: #{@Xbox["avatar"]}"
+    puts "# Gamer score: #{@Xbox["meta"]["gamerscore"]}"
+    puts "# Account tier: #{@Xbox["meta"]["accountTier"]}"
+    puts "# Xbox One Rep: #{@Xbox["meta"]["xboxOneRep"]}"
+    puts "# Preferred color: #{@Xbox["meta"]["preferredColor"]}"
+    puts "# Real name: #{@Xbox["meta"]["realName"]}"
+    puts "# Bio: #{@Xbox["meta"]["bio"]}"
+    puts "# Tenure level: #{@Xbox["meta"]["tenureLevel"]}"
+    puts "# Watermarks: #{@Xbox["meta"]["watermarks"]}"
+    puts "# Location: #{@Xbox["meta"]["location"]}"
+    puts "# Show user as avatar: #{@Xbox["meta"]["showUserAsAvatar"]}"
+rescue StandardError => e
+    puts "#{e}"
+end
 
 # Profile:
 # ID: 2745051201447500
