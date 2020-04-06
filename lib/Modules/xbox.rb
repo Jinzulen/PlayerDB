@@ -4,14 +4,18 @@ module PlayerDB
 
         def Profile(id)
             if !id.empty?
-                @Data = contact_api("xbox", id.downcase)
+                begin
+                    @Data = contact_api("xbox", id.downcase)
 
-                # Does this player exist?
-                if !@Data["success"] then abort("# [PlayerDB:Minecraft] Mojang API lookup failed; no such player exists.") end
+                    # Does this player exist?
+                    if !@Data["success"] then raise "# [PlayerDB:Xbox] Xbox API lookup failed; no such player <#{id}> exists." end
 
-                # Return the player data
-                @Data["data"]["player"]
-            else abort("# [PlayerDB:Xbox] Please input an ID to continue.") end
+                    # Return the player data
+                    @Data["data"]["player"]
+                rescue StandardError => e
+                    puts "# [PlayerDB:Xbox] Error occurred while contacting API: #{e}"
+                end
+            else raise "# [PlayerDB:Xbox] Please input an ID to continue." end
         end
     end
 end

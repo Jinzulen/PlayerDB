@@ -16,9 +16,9 @@ module PlayerDB
 
                 response.parsed_response
             rescue HTTParty::Error => e
-                abort "# [PlayerDB] Failed to retrieve resource: #{e}"
+                raise "# [PlayerDB] Failed to retrieve resource: #{e}"
             rescue StandardError => e
-                abort "# [PlayerDB] Error occurred: #{e}"
+                raise "# [PlayerDB] Error occurred: #{e}"
             end
         end
     end

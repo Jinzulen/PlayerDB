@@ -7,18 +7,22 @@ module PlayerDB
             @Profile = [nil, "Private", nil, "Public"]
 
             if !id.empty?
-                @Data = contact_api("steam", id.downcase)
+                begin
+                    @Data = contact_api("steam", id.downcase)
 
-                # Does this player exist?
-                if !@Data["success"] then abort("# [PlayerDB:Minecraft] Mojang API lookup failed; no such player exists.") end
+                    # Does this player exist?
+                    if !@Data["success"] then raise "# [PlayerDB:Steam] Steam API lookup failed; no such user <#{id}> exists." end
 
-                # Make the profile and online status suitable for humans
-                @Data["data"]["player"]["meta"]["profilestate"] = @Profile[@Data["data"]["player"]["meta"]["profilestate"]]
-                @Data["data"]["player"]["meta"]["personastate"] = @Status[@Data["data"]["player"]["meta"]["personastate"]]
+                    # Make the profile and online status suitable for humans
+                    @Data["data"]["player"]["meta"]["profilestate"] = @Profile[@Data["data"]["player"]["meta"]["profilestate"]]
+                    @Data["data"]["player"]["meta"]["personastate"] = @Status[@Data["data"]["player"]["meta"]["personastate"]]
 
-                # Return data
-                @Data["data"]["player"]
-            else abort("# [PlayerDB:Steam] Please input an ID to continue.") end
+                    # Return data
+                    @Data["data"]["player"]
+                rescue StandardError => e
+                    puts "# [PlayerDB:Steam] Error occurred while contacting API: #{e}"
+                end
+            else raise "# [PlayerDB:Steam] Please input an ID to continue." end
         end
     end
 end
