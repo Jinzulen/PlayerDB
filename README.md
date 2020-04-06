@@ -1,6 +1,6 @@
 # PlayerDB
 ### Powerful, but simple, unofficial client to interface with the PlayerDB API.
-![https://api.travis-ci.org/Jinzulen/PlayerDB.svg?branch=master](https://api.travis-ci.org/Jinzulen/PlayerDB.svg?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/ce7f5b3cd9f3690180ea/maintainability)](https://codeclimate.com/github/Jinzulen/PlayerDB/maintainability) [![Gem Version](https://badge.fury.io/rb/PlayerDB.svg)](https://badge.fury.io/rb/PlayerDB)
+![https://api.travis-ci.org/Jinzulen/PlayerDB.svg?branch=master](https://api.travis-ci.org/Jinzulen/PlayerDB.svg?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/ce7f5b3cd9f3690180ea/maintainability)](https://codeclimate.com/github/Jinzulen/PlayerDB/maintainability) [![Gem Version](https://badge.fury.io/rb/PlayerDB.svg)](https://badge.fury.io/rb/PlayerDB) ![https://rubygems.org/gems/PlayerDB](https://img.shields.io/gem/dtv/PlayerDB)
 
 # 1. Installation
 *Please note that the gem name is case sensitive.*
