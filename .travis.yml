@@ -1,0 +1,3 @@
+language: ruby
+platform: :jruby
+install: gem install httparty
